@@ -25,6 +25,7 @@ public:
     virtual void draw() = 0;
 };
 
+namespace world {
 class World : IDrawable
 {
 public:
@@ -51,7 +52,7 @@ public:
 
 private:
     uint8_t size_;
-    Texture backgroundTexture_;
+    Texture2D backgroundTexture_;
     Color backgroundColor_;
 };
 
@@ -74,5 +75,7 @@ private:
     uint8_t height_;
     TiledScene tiledScene_;
 };
+
+} // namespace world
 
 #endif // WORLD_H

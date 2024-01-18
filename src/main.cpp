@@ -1,4 +1,5 @@
-#include "World.h"
+#include "World.hpp"
+#include "Logger.hpp"
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>

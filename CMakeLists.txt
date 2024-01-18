@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.11) 
 project(UntitledFarmingGame VERSION 0.0.1.0)
 
+# Base build settings
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
+
+# Project options
+set(USE_LOGGER TRUE)
 
 # Dependencies
 set(RAYLIB_VERSION 5.0)
@@ -32,7 +36,13 @@ if (${PLATFORM} STREQUAL "Web")
   set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif()
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+set(SOURCES src/main.cpp src/World.cpp)
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+if (USE_LOGGER)
+  message("Logger used!")
+  target_compile_definitions(${PROJECT_NAME} PUBLIC -DUSE_LOGGER)
+endif()
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/include")
 target_link_libraries(${PROJECT_NAME} raylib)
 
